@@ -22,6 +22,7 @@ public class ImplementLinkedList {
 		System.out.println(result);
 		System.out.println("Enter the no.of rotations : ");
 		int k = sc.nextInt();
+		sc.close();
 		System.out.println("After Rotation : ");
 		linklist.linkListLeftRotation(k);
 		linklist.printLinkList(linklist.firstNode);
