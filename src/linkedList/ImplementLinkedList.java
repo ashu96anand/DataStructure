@@ -1,6 +1,6 @@
 package linkedList;
 
-import java.util.Scanner;
+import java.util.Scanner; 
 
 public class ImplementLinkedList {
 
@@ -18,10 +18,13 @@ public class ImplementLinkedList {
 		linklist.printLinkList(linklist.firstNode);
 		System.out.println("Enter the location to check : ");
 		int location = sc.nextInt();
-		sc.close();
 		int result = linklist.getNodeValue(location);
 		System.out.println(result);
-
+		System.out.println("Enter the no.of rotations : ");
+		int k = sc.nextInt();
+		System.out.println("After Rotation : ");
+		linklist.linkListLeftRotation(k);
+		linklist.printLinkList(linklist.firstNode);
 	}
 
 	private static class MyLinkList{
@@ -60,13 +63,34 @@ public class ImplementLinkedList {
 			currNode = firstNode;
 			for(int j=0; j<i; j++){
 				if(currNode == null){
-					return 0;
+					return Integer.MAX_VALUE;
 				}
 				currNode = currNode.next;
 			}
 			return currNode.data;
 		}
-
+		
+		public void linkListLeftRotation(int k){
+			if(k == 0){
+				return;
+			}
+			currNode = firstNode;
+			int count = 1;
+			while(count < k && currNode != null){
+				currNode = currNode.next;
+				count++;
+			}
+			if(currNode == null){
+				return;
+			}
+			Node kthNode = currNode;
+			while(currNode.next != null){
+				currNode = currNode.next;
+			}
+			currNode.next = firstNode;
+			firstNode = kthNode.next;
+			kthNode.next = null;
+		}
 
 	}
 
